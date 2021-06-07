@@ -36,7 +36,7 @@ public class UserInterface {
     }
 
     private void renderPage(int page) {
-        final Table table = csvProcessor.process(fileReader.readLines());
+        final Table table = csvProcessor.process(fileReader.readLines(), null);
         final String renderedTable = tableRenderer.render(table, page);
         System.out.println(renderedTable);
     }

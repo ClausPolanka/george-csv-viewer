@@ -19,7 +19,7 @@ class CsvProcessorTest {
     @Test
     void shouldExtractColumnNames() {
         // when
-        final Table table = processor.process(lines());
+        final Table table = processor.process(lines(), null);
 
         // then
         assertIterableEquals(Arrays.asList("No.", "Name", "Age", "City"), table.getColumnsNames());
@@ -28,7 +28,7 @@ class CsvProcessorTest {
     @Test
     void shouldExtractPages() {
         // when
-        final Table table = processor.process(lines());
+        final Table table = processor.process(lines(), null);
 
         // then
         final List<Page> pages = table.getPages();
@@ -54,6 +54,40 @@ class CsvProcessorTest {
 
         assertPage(
                 Collections.singletonList(Arrays.asList("7.", "Nadia", "29", "Madrid")),
+                pages.get(2)
+        );
+    }
+
+    @Test
+    void shouldSortByColumnName() {
+        // when
+        final Table table = processor.process(lines(), "name");
+
+        // then
+        final List<Page> pages = table.getPages();
+        assertEquals(3, pages.size());
+
+        assertPage(
+                Arrays.asList(
+                        Arrays.asList("1.", "Jaques", "66", "Paris"),
+                        Arrays.asList("2.", "Mary", "35", "Munich"),
+                        Arrays.asList("3.", "Nadia", "29", "Madrid")
+
+                ),
+                pages.get(0)
+        );
+
+        assertPage(
+                Arrays.asList(
+                        Arrays.asList("4.", "Paul", "57", "London"),
+                        Arrays.asList("5.", "Peter", "42", "NewYork"),
+                        Arrays.asList("6.", "Stephanie", "47", "Stockholm")
+                ),
+                pages.get(1)
+        );
+
+        assertPage(
+                Collections.singletonList(Arrays.asList("7.", "Yuri", "23", "Moscow")),
                 pages.get(2)
         );
     }

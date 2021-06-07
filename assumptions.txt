@@ -1,3 +1,4 @@
 * I assume that space in the first title column shouldn't be there because if we align to
 the right side then City column is not in the right position, if we align to the left then space should be removed and placed after Name
 * I assume that user input suppose to have SPACE ( ) between action and value
+* I assume that if table has several columns with the same name I will take the first for sorting
