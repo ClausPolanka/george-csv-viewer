@@ -24,9 +24,14 @@ public class TableRenderer {
             return "";
         }
 
+        if (isPageIndexIsCorrect(table, pageIndexToRender)) {
+            return "";
+        }
+
+        final int actualPageIndex = pageIndexToRender - 1;
         final StringBuilder stringBuilder = new StringBuilder();
 
-        final Page page = table.getPages().get(pageIndexToRender);
+        final Page page = table.getPages().get(actualPageIndex);
         final List<String> header = table.getColumnsNames();
         final List<List<String>> rows = page.getRows();
 
@@ -38,6 +43,9 @@ public class TableRenderer {
 
         // render each row
         rows.forEach(row -> renderRow(row, widthByColumnIndex, stringBuilder));
+
+        // render summary
+        renderSummary(table, pageIndexToRender, stringBuilder);
 
         stringBuilder.append("N(ext page, P(revious page, F(irst page, L(ast page, eX(it");
         return stringBuilder.toString();
@@ -78,6 +86,14 @@ public class TableRenderer {
         stringBuilder.append("\n");
     }
 
+    private void renderSummary(
+            Table table,
+            int pageIndexToRender,
+            StringBuilder stringBuilder
+    ) {
+        stringBuilder.append(String.format("Page %d of %d", pageIndexToRender, table.getPages().size())).append("\n");
+    }
+
     private String appendSymbol(String value, int width, String symbol) {
         if (value.length() == width) {
             return value;
@@ -106,5 +122,9 @@ public class TableRenderer {
                 .orElse(0);
 
         return Math.max(headerName.length(), maxWidth);
+    }
+
+    private boolean isPageIndexIsCorrect(Table table, int pageIndexToRender) {
+        return pageIndexToRender <= 0 || table.getPages().size() < pageIndexToRender;
     }
 }

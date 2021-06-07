@@ -10,9 +10,10 @@ public class Application {
         final FileReader fileReader = new FileReader(args[0]);
         final CsvProcessor csvProcessor = new CsvProcessor(getAllowedRowsAtOnePage(args));
         final TableRenderer tableRenderer = new TableRenderer();
+        final UserInputParser userInputParser = new UserInputParser();
 
         final UserInterface userInterface = new UserInterface(
-                new Scanner(System.in), fileReader, csvProcessor, tableRenderer
+                new Scanner(System.in), userInputParser, fileReader, csvProcessor, tableRenderer
         );
         userInterface.start();
     }
