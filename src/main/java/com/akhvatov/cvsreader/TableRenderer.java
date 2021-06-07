@@ -28,7 +28,7 @@ public class TableRenderer {
 
         final Page page = table.getPages().get(pageIndexToRender);
         final List<String> header = table.getColumnsNames();
-        final List<String[]> rows = page.getRows();
+        final List<List<String>> rows = page.getRows();
 
         // calculate width
         final Map<Integer, Integer> widthByColumnIndex = calculateWidthMap(page, header);
@@ -66,13 +66,13 @@ public class TableRenderer {
     }
 
     private void renderRow(
-            String[] row,
+            List<String> row,
             Map<Integer, Integer> widthByColumnIndex,
             StringBuilder stringBuilder
     ) {
-        IntStream.range(0, row.length).boxed()
+        IntStream.range(0, row.size()).boxed()
                 .forEach(index -> stringBuilder
-                        .append(appendSymbol(row[index], widthByColumnIndex.get(index), " "))
+                        .append(appendSymbol(row.get(index), widthByColumnIndex.get(index), " "))
                         .append(COLUMN_SEPARATOR));
 
         stringBuilder.append("\n");
@@ -100,7 +100,7 @@ public class TableRenderer {
 
     private int calculateWidthPerColumn(int columnIndex, Page page, String headerName) {
         int maxWidth = page.getRows().stream()
-                .map(columns -> columns[columnIndex])
+                .map(columns -> columns.get(columnIndex))
                 .mapToInt(String::length)
                 .max()
                 .orElse(0);

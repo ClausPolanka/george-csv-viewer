@@ -17,9 +17,9 @@ class TableRendererTest {
         // given
         final Table table = new Table(Arrays.asList("Name", "Age", "City"), Collections.singletonList(Page.from(
                 Arrays.asList(
-                        new String[]{"Peter", "42", "New York"},
-                        new String[]{"Paul", "57", "London"},
-                        new String[]{"Mary", "35", "Munich"}
+                        Arrays.asList("Peter", "42", "New York"),
+                        Arrays.asList("Paul", "57", "London"),
+                        Arrays.asList("Mary", "35", "Munich")
                 )
         )));
 
@@ -29,11 +29,11 @@ class TableRendererTest {
         // then
         final String expectString =
                 "Name |Age|City    |\n" +
-                "-----+---+--------+\n" +
-                "Peter|42 |New York|\n" +
-                "Paul |57 |London  |\n" +
-                "Mary |35 |Munich  |\n" +
-                "N(ext page, P(revious page, F(irst page, L(ast page, eX(it";
+                        "-----+---+--------+\n" +
+                        "Peter|42 |New York|\n" +
+                        "Paul |57 |London  |\n" +
+                        "Mary |35 |Munich  |\n" +
+                        "N(ext page, P(revious page, F(irst page, L(ast page, eX(it";
 
         assertEquals(expectString, render);
     }

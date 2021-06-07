@@ -7,27 +7,28 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 class CsvProcessorTest {
 
     static final int ALLOWED_ROWS_AT_ONE_PAGE = 3;
 
-    final CsvProcessor processor = new CsvProcessor();
+    final CsvProcessor processor = new CsvProcessor(ALLOWED_ROWS_AT_ONE_PAGE);
 
     @Test
     void shouldExtractColumnNames() {
         // when
-        final Table table = processor.process(lines(), ALLOWED_ROWS_AT_ONE_PAGE);
+        final Table table = processor.process(lines());
 
         // then
-        assertIterableEquals(Arrays.asList("Name", "Age", "City"), table.getColumnsNames());
+        assertIterableEquals(Arrays.asList("No.", "Name", "Age", "City"), table.getColumnsNames());
     }
 
     @Test
     void shouldExtractPages() {
         // when
-        final Table table = processor.process(lines(), ALLOWED_ROWS_AT_ONE_PAGE);
+        final Table table = processor.process(lines());
 
         // then
         final List<Page> pages = table.getPages();
@@ -35,32 +36,32 @@ class CsvProcessorTest {
 
         assertPage(
                 Arrays.asList(
-                        new String[]{"Peter", "42", "NewYork"},
-                        new String[]{"Paul", "57", "London"},
-                        new String[]{"Mary", "35", "Munich"}
+                        Arrays.asList("1.", "Peter", "42", "NewYork"),
+                        Arrays.asList("2.", "Paul", "57", "London"),
+                        Arrays.asList("3.", "Mary", "35", "Munich")
                 ),
                 pages.get(0)
         );
 
         assertPage(
                 Arrays.asList(
-                        new String[]{"Jaques", "66", "Paris"},
-                        new String[]{"Yuri", "23", "Moscow"},
-                        new String[]{"Stephanie", "47", "Stockholm"}
+                        Arrays.asList("4.", "Jaques", "66", "Paris"),
+                        Arrays.asList("5.", "Yuri", "23", "Moscow"),
+                        Arrays.asList("6.", "Stephanie", "47", "Stockholm")
                 ),
                 pages.get(1)
         );
 
         assertPage(
-                Collections.singletonList(new String[]{"Nadia", "29", "Madrid"}),
+                Collections.singletonList(Arrays.asList("7.", "Nadia", "29", "Madrid")),
                 pages.get(2)
         );
     }
 
-    void assertPage(List<String[]> expectedRows, Page page) {
-        final List<String[]> rows = page.getRows();
+    void assertPage(List<List<String>> expectedRows, Page page) {
+        final List<List<String>> rows = page.getRows();
         for (int i = 0; i < expectedRows.size(); i++) {
-            assertArrayEquals(expectedRows.get(i), rows.get(i));
+            assertIterableEquals(expectedRows.get(i), rows.get(i));
         }
     }
 

@@ -5,19 +5,19 @@ import java.util.List;
 
 public class Page {
 
-    private final List<String[]> rows = new ArrayList<>();
+    private final List<List<String>> rows = new ArrayList<>();
 
-    public static Page from(List<String[]> rows) {
+    public static Page from(List<List<String>> rows) {
         final Page page = new Page();
         rows.forEach(page::addRow);
         return page;
     }
 
-    public void addRow(String[] row) {
+    public void addRow(List<String> row) {
         this.rows.add(row);
     }
 
-    public List<String[]> getRows() {
+    public List<List<String>> getRows() {
         return rows;
     }
 }

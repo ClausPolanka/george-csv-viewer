@@ -1,19 +1,20 @@
 package com.akhvatov.cvsreader;
 
+import java.util.Scanner;
+
 public class Application {
 
     public static final int DEFAULT_ALLOWED_ROWS_AT_ONE_PAGE = 3;
 
     public static void main(String[] args) {
         final FileReader fileReader = new FileReader(args[0]);
-
-        final CsvProcessor csvProcessor = new CsvProcessor();
-        final Table table = csvProcessor.process(fileReader.readLines(), getAllowedRowsAtOnePage(args));
-
+        final CsvProcessor csvProcessor = new CsvProcessor(getAllowedRowsAtOnePage(args));
         final TableRenderer tableRenderer = new TableRenderer();
-        final String renderedTable = tableRenderer.render(table, 0);
 
-        System.out.println(renderedTable);
+        final UserInterface userInterface = new UserInterface(
+                new Scanner(System.in), fileReader, csvProcessor, tableRenderer
+        );
+        userInterface.start();
     }
 
     private static Integer getAllowedRowsAtOnePage(String[] args) {
