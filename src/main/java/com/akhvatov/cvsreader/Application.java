@@ -6,9 +6,11 @@ public class Application {
         final FileReader fileReader = new FileReader(args[0]);
 
         final CsvProcessor csvProcessor = new CsvProcessor();
-        final State state = csvProcessor.process(fileReader.readLines());
+        final Table table = csvProcessor.process(fileReader.readLines());
 
         final TableRenderer tableRenderer = new TableRenderer();
-        tableRenderer.render(state);
+        final String renderedTable = tableRenderer.render(table, 0);
+
+        System.out.println(renderedTable);
     }
 }
