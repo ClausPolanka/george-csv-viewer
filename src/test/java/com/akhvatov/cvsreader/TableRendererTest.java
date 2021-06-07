@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TableRendererTest {
 
@@ -35,5 +36,17 @@ class TableRendererTest {
                 "N(ext page, P(revious page, F(irst page, L(ast page, eX(it";
 
         assertEquals(expectString, render);
+    }
+
+    @Test
+    void shouldReturnEmptyStringIfTableIsEmpty() {
+        // given
+        final Table emptyTable = Table.empty();
+
+        // when
+        final String render = renderer.render(emptyTable, 0);
+
+        // then
+        assertTrue(render.isEmpty());
     }
 }

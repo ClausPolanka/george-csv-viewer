@@ -11,12 +11,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CsvProcessorTest {
 
+    static final int ALLOWED_ROWS_AT_ONE_PAGE = 3;
+
     final CsvProcessor processor = new CsvProcessor();
 
     @Test
     void shouldExtractColumnNames() {
         // when
-        final Table table = processor.process(lines());
+        final Table table = processor.process(lines(), ALLOWED_ROWS_AT_ONE_PAGE);
 
         // then
         assertIterableEquals(Arrays.asList("Name", "Age", "City"), table.getColumnsNames());
@@ -25,7 +27,7 @@ class CsvProcessorTest {
     @Test
     void shouldExtractPages() {
         // when
-        final Table table = processor.process(lines());
+        final Table table = processor.process(lines(), ALLOWED_ROWS_AT_ONE_PAGE);
 
         // then
         final List<Page> pages = table.getPages();
