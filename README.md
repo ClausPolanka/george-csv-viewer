@@ -10,7 +10,7 @@ You will collaborate in seven sessions with George Backend Chapter team members 
 In the Remote-Pair-Programming Sessions you need to share your screen so that we can follow your progress. In case you have a dual monitor setup, please make sure that you also share your browswer window. Of course, you can use the web to research in case you need to look up something. In general it should feel as if you would have a regular working day at work. 
 
 ### Exercise: CSV Viewer
-Please find the requirements for the CSV Viewer Kata on the following [website](https://ccd-school.de/coding-dojo/#cd8). At the bottom of that page you will find all requirements split into 5 iterations. The goal of this exercise is __not__ to finish as many iterations as possible. We will evaluate your solution based on quality over quantity. 
+Please find the requirements for the CSV Viewer Kata on the following [website](https://ccd-school.de/coding-dojo/#cd8). At the bottom of that page you will find all requirements split into 5 iterations under the section **Agility Katas**. The goal of this exercise is __not__ to finish as many iterations as possible. We will evaluate your solution based on quality over quantity. 
 
 Please focus on code quality by applying
 - Object-Oriented Design, 
