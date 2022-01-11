@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
-        <junit-jupiter>5.7.1</junit-jupiter>
+        <junit-jupiter>5.8.2</junit-jupiter>
     </properties>
 
     <build>
