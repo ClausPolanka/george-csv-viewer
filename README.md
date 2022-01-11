@@ -1,5 +1,5 @@
 # George Backend Chapter - Coding Challenge
-Congratulations. You made it to our next recruiting stage which is a coding challenge. In this stage you have to show practical skills in the things which you discussed in the previous recruiting stage:
+Congratulations. You made it to our next recruiting stage which is a coding challenge. In this stage you have to show practical skills in the things which we discussed in the previous recruiting stage:
 - Object-Oriented Programming
 - Refactoring
 - Automated Testing (Developer Tests) 
@@ -35,7 +35,7 @@ This example might also seem a bit hypothetical, but we believe it small but com
 ### Requirements
 Please use Java 8 or Kotlin as a programming language. No Framework is allowed for this exercise. No other library than JUnit must be used. Currently, JUnit 5 is configured in the `pom.xml`. In case you prefer JUnit 4 over 5 please change the `pom.xml` file accordingly. We don’t allow any mocking library. In case you see the need for mocking, please hand roll your mocks.
 
-### Let's Get Startet
+### Let's Get Started
 1. Please clone the repository.
 2. Create a branch off master (if you use Java) or off kotlin_maven_baseline (in case you use Kotlin): `firstname_lastname_iteration_1_colleague`
 3. Push this branch to the repository.
